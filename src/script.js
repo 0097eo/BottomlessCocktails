@@ -30,9 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
             listItem.addEventListener('click', function(){
                 displayCocktailDetails(cocktail.idDrink)
             })
-            listItem.addEventListener('')
+            listItem.addEventListener('mouseover', function(){
+                this.style.backgroundColor = 'red'
+            })
+            listItem.addEventListener('mouseout', function(){
+                this.style.backgroundColor = ''
+            })
         })
     }
+    //reload page
+    
 
     //function to fetch a cocktail by id display it in the UI
     function displayCocktailDetails(cocktailId) {
