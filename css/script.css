@@ -45,3 +45,18 @@ footer{
     text-align: center;
     color: white;
 }
+/* data element styles*/
+#cocktails-list{
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0;
+}
+#cocktails-list li{
+    background-color: #fff;
+    color: #333;
+    margin: 10px 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+
+}
