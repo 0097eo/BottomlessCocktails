@@ -1,49 +1,45 @@
-document.addEventListener('DOMContentLoaded', function() {
-    //fetching cocktails
-    function fetchCocktails(){
+document.addEventListener("DOMContentLoaded", function() {
+    // Function to add CSS styles for the cocktail image
+    function addCocktailImageStyles() {
+        let style = document.createElement('style');
+        style.innerHTML = `
+        .cocktail-image {
+        border-radius: 10%;
+        width: 450px;
+        height: 450px; 
+        }
+        `;
+        document.head.appendChild(style);
+    }
+    addCocktailImageStyles();
+
+    // Function to fetch cocktails
+    function fetchCocktails() {
         return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-        .then(res => res.json())
-        .then(data => data.drinks)
+        .then(response => response.json())
+        .then(data => data.drinks);
     }
-    //fetching a cocktail by name
-    function getDrinkByName(name){
-        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
-        .then(res => res.json())
-        .then(data => data.drinks)
-    }
-    //event listener for form
-    document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        const searchTerm = document.getElementById('search-input').value;
-        getDrinkByName(searchTerm)
-            .then(cocktails => displayCocktails(cocktails))
-            .catch(error => alert('No such cocktail, try searching for another one', error));
-    });
-    //display cocktails list
-    function displayCocktails(cocktails){
-        const cocktailsList = document.getElementById('cocktails-list') 
-        cocktailsList.innerHTML = ''
+
+    // Function to render cocktails 
+    function displayCocktails(cocktails) {
+        const cocktailsList = document.getElementById('cocktails-list');
+        cocktailsList.innerHTML = ''; 
         cocktails.forEach(cocktail => {
-            const listItem = document.createElement('li')
-            listItem.textContent = cocktail.strDrink
-            cocktailsList.appendChild(listItem)
-            listItem.addEventListener('click', function(){
-                displayCocktailDetails(cocktail.idDrink)
-            })
+            const listItem = document.createElement('li');
             listItem.addEventListener('mouseover', function(){
-                this.style.backgroundColor = 'red'
+                this.style.backgroundColor = 'red';
             })
             listItem.addEventListener('mouseout', function(){
                 this.style.backgroundColor = ''
             })
-        })
+            listItem.addEventListener('click', function() {
+                displayCocktailDetails(cocktail.idDrink);
+            })
+            listItem.textContent = cocktail.strDrink;
+            cocktailsList.appendChild(listItem);
+        });
     }
-    //reload page
-    document.getElementById('header-title').addEventListener('click', function(){
-        window.location.reload()
-    })
 
-    //function to fetch a cocktail by id display it in the UI
     function displayCocktailDetails(cocktailId) {
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`)
             .then(response => response.json())
@@ -69,7 +65,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    // Function to search for a cocktail by name
+    function getDrinkByName(name) {
+        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+            .then(response => response.json())
+            .then(data => data.drinks);
+    }
+
+    // Event listener for the search form
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const searchTerm = document.getElementById('search-input').value;
+        getDrinkByName(searchTerm)
+            .then(cocktails => displayCocktails(cocktails))
+            .catch(error => alert('No such cocktail, try searching for another one', error));
+    });
+
+    // Event listener for the header title to navigate back to the home page
+    document.getElementById("header-title").addEventListener("click", function() {
+        window.location.reload()
+    });
+
+    // Fetch and display cocktails
     fetchCocktails()
         .then(cocktails => displayCocktails(cocktails))
-        .catch(error => console.error('Error fetching cocktails', + error))
+        .catch(error => console.error('Error fetching cocktails:', error));
 })
