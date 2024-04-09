@@ -14,11 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
     addCocktailImageStyles();
 
     // Function to fetch cocktails
-    function fetchCocktails() {
-        return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-        .then(response => response.json())
-        .then(data => data.drinks);
-    }
+    const fetchCocktails = async () => {
+        try {
+            const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+            const data = await response.json();
+            return data.drinks;
+        } catch (error) {
+            console.error('Error fetching cocktails:', error);
+        }
+    };
 
     // Function to render cocktails 
     function displayCocktails(cocktails) {
