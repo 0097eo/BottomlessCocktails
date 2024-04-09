@@ -70,10 +70,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
     // Function to search for a cocktail by name
-    function getDrinkByName(name) {
-        return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
-            .then(response => response.json())
-            .then(data => data.drinks);
+    const  getDrinkByName = async (name) => {
+        try{
+        const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
+            const data = await response.json()
+            return data.drinks
+        }catch(error){
+            console.error('Error fetching cocktail by name', error)
+        }
     }
 
     // Event listener for the search form
