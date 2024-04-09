@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(res => res.json())
         .then(data => data.drinks)
     }
+    //event listener for form
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const searchTerm = document.getElementById('search-input').value;
+        getDrinkByName(searchTerm)
+            .then(cocktails => displayCocktails(cocktails))
+            .catch(error => alert('No such cocktail, try searching for another one', error));
+    });
     //display cocktails list
     function displayCocktails(cocktails){
         const cocktailsList = document.getElementById('cocktails-list') 
@@ -22,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             listItem.addEventListener('click', function(){
                 displayCocktailDetails(cocktail.idDrink)
             })
+            listItem.addEventListener('')
         })
     }
 
