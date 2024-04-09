@@ -85,7 +85,9 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault(); 
         const searchTerm = document.getElementById('search-input').value;
         getDrinkByName(searchTerm)
-            .then(cocktails => displayCocktails(cocktails))
+            .then(cocktails => {displayCocktails(cocktails)
+            event.target.reset()
+            })
             .catch(error => alert('No such cocktail, try searching for another one', error));
     });
 
