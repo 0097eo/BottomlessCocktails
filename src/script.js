@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
     //reload page
-    
+    document.getElementById('header-title').addEventListener('click', function(){
+        window.location.reload()
+    })
 
     //function to fetch a cocktail by id display it in the UI
     function displayCocktailDetails(cocktailId) {
