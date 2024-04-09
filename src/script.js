@@ -23,15 +23,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //function to fetch a cocktail by id display it in the UI
-    // function displayCocktailDetails(cocktailId){
-    //     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         const cocktail = data.drinks[0]
-    //         document.getElementById('cocktails-div').innerHTML = ''
-    //         //creating and populating 
-    //     })
-    // }
+    function displayCocktailDetails(cocktailId){
+        fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`)
+        .then(res => res.json())
+        .then(data => {
+            const cocktail = data.drinks[0]
+            document.getElementById('cocktails-div').innerHTML = ''
+            //creating and populating  the detailed cocktail information
+            const cocktailDiv = document.createElement('div')
+            cocktailDiv.innerHTML = `
+                <h2>${cocktail.strDrink}</h2>
+                <img src='${cocktail.strDrinkThumb}' alt='${cocktail.strDrink}' class='cocktail-image'>
+                <h2>Ingredients & Measurements</h2>
+                    ${cocktail.strMeasure1 ? `<p>${cocktail.strMeasure1} ${cocktail.strIngredient1}</p>` : ''}
+                    ${cocktail.strMeasure2 ? `<p>${cocktail.strMeasure2} ${cocktail.strIngredient2}</p>` : ''}
+                    ${cocktail.strMeasure3 ? `<p>${cocktail.strMeasure3} ${cocktail.strIngredient3}</p>` : ''}
+                    ${cocktail.strMeasure4 ? `<p>${cocktail.strMeasure4} ${cocktail.strIngredient4}</p>` : ''}
+                <h2>Instructions</h2>
+                <p>${cocktail.strInstructions}</p>
+                <h2>Served In A: </h2>
+                <p>${cocktail.strGlass}</p>
+            `
+            document.getElementById('cocktails-div').appendChild(cocktailDiv)
+        })
+    }
+
     fetchCocktails()
         .then(cocktails => displayCocktails(cocktails))
         .catch(error => console.error('Error fetching cocktails', + error))
