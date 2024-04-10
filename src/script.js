@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function() {
         /* Media query for small screens */
         @media only screen and (max-width: 480px) {
             .cocktail-image {
-                width: 225px;
-                height: 225px;
+                width: 150px;
+                height: 150px;
             }
         }
         `;
