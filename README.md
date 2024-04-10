@@ -32,6 +32,9 @@ Bottomless cocktails is a single page application where a user is able to view a
 * 0.1
     * Initial Release
 
+## Live link
+https://okelootieno.github.io/BottomlessCocktails/
+
 ## License
 
 MIT License
