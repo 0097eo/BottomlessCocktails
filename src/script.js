@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
         width: 450px;
         height: 450px; 
         }
+
+        /* Media query for small screens */
+        @media only screen and (max-width: 480px) {
+            .cocktail-image {
+                width: 225px;
+                height: 225px;
+            }
+        }
         `;
         document.head.appendChild(style);
     }
