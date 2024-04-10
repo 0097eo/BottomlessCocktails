@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("cocktails-div").innerHTML = '';
             const cocktailDiv = document.createElement('div');
             cocktailDiv.innerHTML = `
+                <br>
                 <h2>${cocktail.strDrink}</h2>
                 <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" class="cocktail-image">
                 <h2>Ingredients & Measurements</h2>
