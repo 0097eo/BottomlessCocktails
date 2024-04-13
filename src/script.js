@@ -88,14 +88,26 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error fetching cocktail by name', error)
         }
     }
+    //validation function
+    function validateSearchInput(input){
+        return input.trim().length >= 2;
+    }
 
     // Event listener for the search form
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); 
         const searchTerm = document.getElementById('search-input').value;
+
+        // Validate the search input
+        if (!validateSearchInput(searchTerm)) {
+            alert('Please enter a valid search term with at least 2 characters.');
+            return; // Prevent further execution
+        }
+
         getDrinkByName(searchTerm)
-            .then(cocktails => {displayCocktails(cocktails)
-            event.target.reset()
+            .then(cocktails => {
+                displayCocktails(cocktails)
+                event.target.reset()
             })
             .catch(error => alert('No such cocktail, try searching for another one', error));
     });
