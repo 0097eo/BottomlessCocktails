@@ -109,7 +109,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 displayCocktails(cocktails)
                 event.target.reset()
             })
-            .catch(error => alert('No such cocktail, try searching for another one', error));
+            .catch(error => {
+                alert('No such cocktail, try searching for another one', error)
+                fetchCocktails()
+                .then(cocktails=> displayCocktails(cocktails))
+                .catch(error => console.error('Error fetching default list', error))
+                event.target.reset()
+            });
     });
 
     // Event listener for the header title to navigate back to the home page
