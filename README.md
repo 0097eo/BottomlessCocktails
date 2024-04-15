@@ -8,7 +8,7 @@ emmanuelokello294@gmail.com
 
 ## Description
 
-Bottomless cocktails is a single page application where a user is able to view a list of random cocktails on loading the page. THe user is also able to search for a spaecific cocktail and view the details such as a representative picture of the cocktail, the ingredients and measurements, and the serving glass. This SPA uses TheCocktailDB API for its data fetches. 
+Bottomless cocktails is a single page application where a user is able to view a list of random cocktails on loading the page. The user is also able to search for a specific cocktail and view the details such as a representative picture of the cocktail, the ingredients and measurements, and the serving glass. This SPA uses TheCocktailDB API for its data fetches. 
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ Bottomless cocktails is a single page application where a user is able to view a
 * Any code editor
 * Any browser
 
-### Installing
+### Installation
 
 * Download the zip file from https://github.com/OkeloOtieno/BottomlessCocktails and extract it.
 
